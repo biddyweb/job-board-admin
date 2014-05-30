@@ -1,4 +1,4 @@
-# Job Board Public
+# Job Board Admin
 
 This is a work in progress, my intention is one day to have a full
 MVD JS Meetup Group webpage and to have also a jobs section powered by this SPA.
