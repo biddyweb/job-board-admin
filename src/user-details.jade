@@ -1,0 +1,40 @@
+include _mixins
+doctype html
+html(lang="en")
+  head
+    include _head
+  body
+    +navigation("userDetails")
+
+    .container
+      .row
+        .col-md-12(data-bind="if: notice")
+          .alert(data-bind="css: { 'alert-danger': notice().type == 'danger', 'alert-success': notice().type == 'success' }")
+            p(data-bind="text: notice().text")
+      .row
+        .col-md-12
+          form.form-horizontal(data-bind="submit: saveUser")
+            .form-group
+              label.control-label.col-sm-2 Email
+              .col-sm-10
+                input.form-control(data-bind="value: user().email" placeholder="Email" type="email")
+            .form-group
+              label.control-label.col-sm-2 Username
+              .col-sm-10
+                input.form-control(data-bind="value: user().username" placeholder="Username" type="text")
+            .form-group
+              label.control-label.col-sm-2 Password
+              .col-sm-10
+                input.form-control(data-bind="value: user().password" placeholder="Password" type="password")
+            .form-group
+              label.control-label.col-sm-2 Password Confirmation
+              .col-sm-10
+                input.form-control(data-bind="value: user().passwordConfirmation" placeholder="Password Confirmation" type="password")
+            .form-group
+              .col-sm-10.col-sm-offset-2
+                button.btn.btn-success
+                  | Save&nbsp;
+                  i.glyphicon.glyphicon-trash
+
+
+    script(src="assets/scripts/user.js")

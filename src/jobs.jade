@@ -1,0 +1,56 @@
+include _mixins
+doctype html
+html(lang="en")
+  head
+    include _head
+  body
+    +navigation("jobs")
+
+    .container
+      #actions.row
+        .col-md-12.text-right
+          button.btn.btn-success(data-bind="click: newJob")
+            | Create New Job &nbsp;
+            i.glyphicon.glyphicon-book
+      #jobs.row
+        <!-- ko foreach: jobs -->
+        .col-md-4.job
+          .panel.panel-default
+            .panel-heading.clearfix
+              span.title(data-bind="text: title")
+              a.action.glyphicon.glyphicon-cog(href="#" data-bind="click: function(job){ $parent.job(job) }")
+            .panel-body(data-bind="html: $parent.truncate(body())")
+        <!-- /ko -->
+        <!-- ko if: jobs().length == 0 -->
+        .com-md-12
+          .alert.alert-warning.text-center
+            | You don't have any jobs yet, go ahed and&nbsp;
+            a(data-bind="click: newJob" href="#") create some
+            |.
+        <!-- /ko -->
+
+    #job.container.slider(data-bind="css: { open: job() != null, closed: job() == null }")
+      .row
+        .col-md-10.col-md-offset-2.options
+          .panel.panel-default
+            .panel-heading.clearfix
+              a.action.glyphicon.glyphicon-remove(href="#" data-bind="click: cancelJobEdit")
+            .panel-body
+              .row(data-bind="if: job() != null")
+                .col-sm-6
+                  form.form-horizontal
+                    .form-group
+                      input.form-control(data-bind="value: job().title, valueUpdate: 'keyup'" placeholder="Job Title")
+                    .form-group
+                      textarea.form-control.content(data-bind="value: job().body, valueUpdate: 'keyup'" placeholder="Job Description (Markdown is welcome)")
+                    .form-group.text-right
+                      button.btn.btn-success(data-bind="click: saveJob" title="Save")
+                        i.glyphicon.glyphicon-floppy-disk
+                      button.btn.btn-danger(data-bind="click: deleteJob, visible: job()._id != null" title="Delete this Job")
+                        i.glyphicon.glyphicon-trash
+                .col-md-6
+                  #result
+                    h3(data-bind="text: job().title()")
+                    .content(data-bind="html: makeHtml(job().body())")
+
+    script(src="assets/scripts/jobs.js")

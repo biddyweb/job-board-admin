@@ -1,0 +1,14 @@
+include _mixins
+doctype html
+html(lang="en")
+  head
+    include _head
+  body
+    +navigation("userDetails")
+
+    .container
+      .row
+        .col-md-12 User Details
+
+
+    script(src="assets/scripts/company.js")

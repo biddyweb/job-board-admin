@@ -1,0 +1,37 @@
+include _mixins
+doctype html
+html(lang="en")
+  head
+    include _head
+  body
+    nav.navbar.navbar-default
+      .container
+        .row
+          .col-md-6.col-md-offset-4
+            .navbar-header
+              a.navbar-brand(href="/jobs.html") MVD JS Group Job Board - Administration
+
+    .container
+      .row
+        .col-md-8.col-md-offset-2
+          .well(data-bind="if: currentUser() == null, visible: currentUser() == null")
+            .alert.alert-danger(data-bind="visible: loginError() != null")
+              | Wrong username or password, please try again.
+            form(data-bind="submit: authenticate")
+              .form-group
+                input.form-control(type="email" placeholder="email" data-bind="value: email")
+              .form-group
+                input.form-control(type="password" placeholder="password" data-bind="value: password")
+              button(type="submit" class="btn btn-info") Login
+          .alert.alert-warning(data-bind="visible: currentUser() != null, if: currentUser() != null")
+            p
+            |Hello &nbsp;
+            b(data-bind="text: currentUser().email")
+            |&nbsp;you are already logged in, you can&nbsp;
+            a(data-bind="click: logout" href="#") logout
+            |&nbsp;if you want or continue to the&nbsp;
+            a(href="/jobs.html") jobs section
+            |&nbsp;.
+
+
+    script(src="assets/scripts/login.js")
