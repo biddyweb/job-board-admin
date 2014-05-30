@@ -7,7 +7,7 @@ mixin navigation(active)
       ul.nav.navbar-nav.navbar-right
         - userDetailsClass = active == "userDetails" ? "active" : ""
         li(class="#{userDetailsClass}")
-          a(href="/user.html" clas) User Details
+          a(href="/user-details.html" clas) User Details
         - companyDetailsClass = active == "companyDetails" ? "active" : ""
         li(class="#{companyDetailsClass}")
           a(href="/company-details.html") Company Details
