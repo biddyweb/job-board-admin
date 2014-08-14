@@ -25,6 +25,16 @@ module.exports = function($) {
       cargo.session('currentUser', null);
       cb();
     }
+    , register: function(userData, cb) {
+      $.post(SERVICE_URL + '/auth/register', userData)
+        .success(function(user) {
+          cargo.session('currentUser', JSON.stringify(user));
+          cb(null, user);
+        })
+        .error(function(err) {
+          cb(err, null);
+        });
+    }
   };
 
 }
