@@ -13,7 +13,6 @@ module.exports = function($) {
     , authenticate: function(email, password, cb) {
       $.post(SERVICE_URL + '/auth/authenticate', { email: email, password: password })
         .success(function(user){
-          debugger;
           cargo.session('currentUser', JSON.stringify(user));
           cb(null, user);
         })
