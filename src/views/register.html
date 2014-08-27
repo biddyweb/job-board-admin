@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="well">
+
+      <div class="alert alert-danger" ng-show="registerErrors.length > 0">
+        <ul>
+          <li ng-repeat="registerError in registerErrors">{{registerError}}</li>
+        </ul>
+      </div>
+        
+      <form ng-submit="register()" name="form">
+        <div class="form-group">
+          <input type="email" class="form-control" placeholder="email" ng-model="user.email" required/>
+        </div>
+
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="username" ng-model="user.username" required/>
+        </div>
+        
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="full name" ng-model="user.name" required/>
+        </div>
+        
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="company name" ng-model="user.companyName" required/>
+        </div>
+
+        <div class="form-group">
+          <textarea class="form-control" placeholder="company bio" ng-model="user.companyBio" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <input type="password" class="form-control" placeholder="password" ng-model="user.password" required/>
+        </div>
+
+        <div class="form-group">
+          <input type="password" class="form-control" placeholder="password confirmation" ng-model="user.passwordConfirmation" required/>
+        </div>
+
+        <button type="submit" class="btn btn-info">
+          Register
+        </button>
+      </form>
+
+    </div>      
+  </div>
+</div>

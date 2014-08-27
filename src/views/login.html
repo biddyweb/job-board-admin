@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="well">
+
+      <div class="alert alert-danger" ng-show="loginErrors.length > 0">
+        <ul>
+          <li ng-repeat="loginError in loginErrors">{{loginError}}</li>
+        </ul>
+      </div>
+        
+      <form ng-submit="login()">
+        <div class="form-group">
+          <input type="email" class="form-control" placeholder="email" ng-model="email"/>
+        </div>
+        
+        <div class="form-group">
+          <input type="password" class="form-control" placeholder="password" ng-model="password"/>
+        </div>
+        
+        <button type="submit" class="btn btn-info">
+          Login
+        </button>
+      </form>
+
+    </div>      
+  </div>
+</div>

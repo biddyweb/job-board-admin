@@ -1,0 +1,49 @@
+<div class="row" ng-show="message">
+  <div class="col-md-12">
+    <div class="alert alert-{{message.cssClass}}">{{message.text}}</div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading clearfix">
+        <span class="title">{{job.title}}</span>
+      </div>
+      <div class="panel-body">
+        
+          <div class="col-sm-6">
+
+            <form class="form-horizontal" ng-submit="save()">
+              <div class="form-group">
+                <input type="text" class="form-control" ng-model="job.title" placeholder="Job Title">
+              </div>
+                
+              <div class="form-group">
+                <textarea cols="30" rows="10" class="form-control content" ng-model="job.body" placeholder="Job Description (Markdown is welcome)"></textarea>
+              </div>
+                
+              <div class="form-group text-right">
+                <button class="btn btn-success" title="Save" type="submit">
+                  <i class="glyphicon glyphicon-floppy-disk"></i>
+                </button>
+                <button class="btn btn-danger" title="Delete this Job" type="button" ng-click="delete()" ng-hide="isNewJob()">
+                  <i class="glyphicon glyphicon-trash"></i>
+                </button>
+              </div>
+
+            </form>
+              
+          </div>
+            
+          <div class="col-md-6">
+            <div id="result">
+              <h3>{{job.title}}</h3>
+              <div class="content">{{job.body}}</div>
+            </div>
+          </div>
+          
+      </div>
+    </div>
+  </div>
+</div>
