@@ -1,13 +1,11 @@
-module.exports = function ($http, $window, $q) {
-
-  var SERVICE_URL = 'http://localhost:3000';
+module.exports = function ($http, $window, $q, serviceUrl) {
   
   var login = function (username, password) {
     var deferred = $q.defer();
     var data = { email: username, password: password };
 
     $http
-      .post(SERVICE_URL + '/auth/authenticate', data)
+      .post(serviceUrl + '/auth/authenticate', data)
       .success(function (user) {
         $window.sessionStorage.currentUser = JSON.stringify(user);
         $window.sessionStorage.token = user.token;
@@ -20,10 +18,10 @@ module.exports = function ($http, $window, $q) {
     return deferred.promise;
   };
 
-  //I'm using promises just in case tomorrow there is a method to
+  //I'm using promises just in case tomorrow we add a method to
   //call on the server, this way I don't need to re implement the controllers
-  //calling this service method, instead I use the same promise and 
-  //change the implementation.
+  //calling this service method. Instead I use the same promise and 
+  //change the implementation here only.
   var logout = function () {
     var deferred = $q.defer();
 
@@ -52,7 +50,7 @@ module.exports = function ($http, $window, $q) {
     var deferred = $q.defer();
 
     $http
-      .post(SERVICE_URL + '/auth/register', user)
+      .post(serviceUrl + '/auth/register', user)
       .success(function (user) {
         $window.sessionStorage.currentUser = JSON.stringify(user);
         $window.sessionStorage.token = user.token;

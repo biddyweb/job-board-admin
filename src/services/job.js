@@ -1,12 +1,10 @@
-module.exports = function ($http, $q) {
-
-  var SERVICE_URL = 'http://localhost:3000';
+module.exports = function ($http, $q, serviceUrl) {
 
   var all = function () {
     var deferred = $q.defer();
 
     $http
-      .get(SERVICE_URL + '/admin/jobs')
+      .get(serviceUrl + '/admin/jobs')
       .success(function (data) {
         deferred.resolve(data);
       })
@@ -21,7 +19,7 @@ module.exports = function ($http, $q) {
     var deferred = $q.defer();
 
     $http
-      .get(SERVICE_URL + '/jobs/' + id)
+      .get(serviceUrl + '/jobs/' + id)
       .success(function (data) {
         delete data.user;
         deferred.resolve(data);
@@ -42,7 +40,7 @@ module.exports = function ($http, $q) {
     var deferred = $q.defer();
 
     $http
-      .put(SERVICE_URL + '/admin/jobs/' + job._id, job)
+      .put(serviceUrl + '/admin/jobs/' + job._id, job)
       .success(function (message) {
         deferred.resolve([{message: 'The job was succesfully updated'}, job]);
       }) 
@@ -57,7 +55,7 @@ module.exports = function ($http, $q) {
     var deferred = $q.defer();
 
     $http
-      .post(SERVICE_URL + '/admin/jobs', job)
+      .post(serviceUrl + '/admin/jobs', job)
       .success(function (data) {
         deferred.resolve([{message: 'The job was succesfully created'}, data]);
       }) 
@@ -72,7 +70,7 @@ module.exports = function ($http, $q) {
     var deferred = $q.defer();
 
     $http
-      .delete(SERVICE_URL + '/admin/jobs/' + jobId)
+      .delete(serviceUrl + '/admin/jobs/' + jobId)
       .success(function (data) {
         deferred.resolve([{message: 'The job was succesfully deleted'}, data]);
       }) 

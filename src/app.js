@@ -8,10 +8,13 @@ app.controller('LoginCtrl', require('./controllers/login'));
 app.controller('JobsCtrl', require('./controllers/jobs'));
 app.controller('JobCtrl', require('./controllers/job'));
 app.controller('RegisterCtrl', require('./controllers/register'));
+app.controller('MessageCtrl', require('./controllers/message'));
 
 app.factory('authInterceptor', require('./interceptors/auth'));
 app.factory('AuthService', require('./services/auth'));
 app.factory('JobService', require('./services/job'));
+
+app.value('serviceUrl', 'http://localhost:3000');
 
 app.config(require('./routes')); //Configure the routes
 app.config(function ($httpProvider) { //Configure the auth interceptor

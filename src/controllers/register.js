@@ -4,14 +4,20 @@ module.exports = function ($scope, $location, AuthService) {
   $scope.user = {};
 
   $scope.register = function () {
-    AuthService
-      .register($scope.user)
-      .then(function (arguments) {
-        $location.path('/jobs');
-      })
-      .catch(function (error) {
-        $scope.registerErrors = [error.message];
-      });
+    if($scope.form.$valid) {
+      AuthService
+        .register($scope.user)
+        .then(function (arguments) {
+          $location
+            .path('/jobs')
+            .search({message: 'Welcome ' + arguments[1].name })
+            .replace();
+        })
+        .catch(function (error) {
+          $scope.registerErrors = [error.message];
+        });  
+    }
+
   };
 
 };

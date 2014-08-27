@@ -6,6 +6,7 @@ html(lang="en" ng-app="job-board-admin")
     meta(name="viewport" content="width=device-width, initial-scale=1")
     meta(name="description" content="Admin App - Job Board for MVD JS Group")
     meta(name="author" content="Gabriel Chertok")
+    base(href="/#!")
 
     title MVD JS Group Job Board - Administration
     link(rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css")
@@ -17,19 +18,24 @@ html(lang="en" ng-app="job-board-admin")
     nav.navbar.navbar-default
       .container
         .navbar-header
-          a.navbar-brand(ng-href="/jobs") MVD JS Group Job Board - Administration
+          a.navbar-brand(ng-href="/#/jobs") MVD JS Group Job Board - Administration
 
         ul.nav.navbar-nav.navbar-right(ng-controller="NavigationCtrl")
           li(ng-if="isAuthenticated()")
             a(href="#" ng-click="logout()") Logout
           li(ng-if="isAuthenticated()")
-            a(href="#" ng-href="/#/profile") My Profile
+            a(ng-href="/#/profile") My Profile
           li(ng-if="!isAuthenticated()")
-            a(href="#" ng-href="/#/login") Login
+            a(ng-href="/#/login") Login
           li(ng-if="!isAuthenticated()")
-            a(href="#" ng-href="/#/register") Register
+            a(ng-href="/#/register") Register
 
     .container
+      .row
+        .col-md-12(ng-controller="MessageCtrl")
+          .alert.alert-danger(ng-show="message") {{message}}
+          .alert.alert-success(ng-show="notice") {{notice}}
+
       .ng-view
         
     script(src="./app.js")

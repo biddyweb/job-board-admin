@@ -15,9 +15,13 @@ module.exports = function ($scope, $routeParams, $location, $rootScope, JobServi
       .then(function (arguments) {
         $scope.message = { cssClass: 'success', text: arguments[0].message };
         if($routeParams.jobId == 'new') {
-          $location.path('/jobs/' + arguments[1]._id);
+          $location
+            .path('/jobs')
+            .search({notice: 'The job was created succsesfully'});
         } else {
-          $scope.job = $scope.job;
+          $location
+            .path('/jobs')
+            .search({notice: 'The job was updated succsesfully'});
         }
       })
       .catch(function (error) {

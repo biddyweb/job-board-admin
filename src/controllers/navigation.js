@@ -4,7 +4,10 @@ module.exports = function ($scope, $location, AuthService) {
     AuthService
       .logout()
       .then(function (message) {
-        $location.path('/login');
+        $location
+          .path('/login')
+          .search({message: 'Good bye!'})
+          .replace();
       });
   };
 
