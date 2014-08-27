@@ -7,6 +7,7 @@ app.controller('NavigationCtrl', require('./controllers/navigation'));
 app.controller('LoginCtrl', require('./controllers/login'));
 app.controller('JobsCtrl', require('./controllers/jobs'));
 app.controller('JobCtrl', require('./controllers/job'));
+app.controller('RegisterCtrl', require('./controllers/register'));
 
 app.factory('authInterceptor', require('./interceptors/auth'));
 app.factory('AuthService', require('./services/auth'));

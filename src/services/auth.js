@@ -54,14 +54,15 @@ module.exports = function ($http, $window, $q) {
     $http
       .post(SERVICE_URL + '/auth/register', user)
       .success(function (user) {
-        $window.localStorage.currentUser = user;
-        deferred.resolve([$window.localStorage.currentUser]);
+        $window.sessionStorage.currentUser = JSON.stringify(user);
+        $window.sessionStorage.token = user.token;
+        deferred.resolve([$window.sessionStorage.currentUser]);
       })
-      .error(function (data) {
-        deferred.reject(['There was an error calling login method', error]);
+      .error(function (error) {
+        deferred.reject(error);
       });
 
-      return deferred;  
+      return deferred.promise;  
   };
 
   return {
