@@ -1,14 +1,20 @@
-{
-  "name": "job-board-ui",
+{ "name": "job-board-admin",
   "version": "0.1.0",
-  "description": "Job Board Public is the public site of the MVD JS Meetup Group jobs section",
+  "description": "Job Board Admin is the administration site of the MVD JS Meetup Group jobs section",
   "main": "Gulpfile.js",
   "scripts": {
     "start": "gulp"
   },
-  "author": "Gabriel Chertok <gchertok@gmail.com>",
+  "author": "Gabriel Chertok <gchertok@gmail.com> (http://cherta.info)",
+  "contributors": [ 
+    "Gaston Festari <cilindrox@gmail.com> (http://blog.cilindrox.com)" 
+  ],
   "dependencies": {
     "angular-bsfy": "*"
+  },
+  "repository" : { 
+    "type": "git",
+    "url": "http://github.com/cherta/job-board-admin.git"
   },
   "devDependencies": {
     "express": "^4.8.5",
