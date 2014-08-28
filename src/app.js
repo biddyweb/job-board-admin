@@ -1,7 +1,9 @@
 var angular = angular = require('angular-bsfy');
 var ngRoute = require('angular-bsfy/route');
 
-var app = angular.module('job-board-admin', [ngRoute.name]);
+require('angular-sanitize');
+
+var app = angular.module('job-board-admin', [ngRoute.name, 'ngSanitize']);
 
 app.controller('NavigationCtrl', require('./controllers/navigation'));
 app.controller('LoginCtrl', require('./controllers/login'));
@@ -13,6 +15,8 @@ app.controller('MessageCtrl', require('./controllers/message'));
 app.factory('authInterceptor', require('./interceptors/auth'));
 app.factory('AuthService', require('./services/auth'));
 app.factory('JobService', require('./services/job'));
+
+app.directive('marked', require('./directives/marked'));
 
 app.value('serviceUrl', 'http://localhost:3000');
 

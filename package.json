@@ -10,7 +10,9 @@
     "Gaston Festari <cilindrox@gmail.com> (http://blog.cilindrox.com)" 
   ],
   "dependencies": {
-    "angular-bsfy": "*"
+    "angular-bsfy": "*",
+    "angular-sanitize": "*",
+    "marked": "*"
   },
   "repository" : { 
     "type": "git",
