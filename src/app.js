@@ -1,9 +1,8 @@
-var angular = angular = require('angular-bsfy');
-var ngRoute = require('angular-bsfy/route');
+var angular = require('angular-bsfy'),
+    ngRoute = require('angular-bsfy/route'),
+    ngSanitize = require('angular-bsfy/sanitize');
 
-require('angular-sanitize');
-
-var app = angular.module('job-board-admin', [ngRoute.name, 'ngSanitize']);
+var app = angular.module('job-board-admin', [ngRoute.name, ngSanitize.name]);
 
 app.controller('NavigationCtrl', require('./controllers/navigation'));
 app.controller('LoginCtrl', require('./controllers/login'));
@@ -18,7 +17,7 @@ app.factory('JobService', require('./services/job'));
 
 app.directive('marked', require('./directives/marked'));
 
-app.value('serviceUrl', 'http://localhost:3000');
+app.value('serviceUrl', '{serviceUrl}');
 
 app.config(require('./routes')); //Configure the routes
 app.config(function ($httpProvider) { //Configure the auth interceptor
