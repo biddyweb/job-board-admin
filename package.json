@@ -1,20 +1,22 @@
-{ "name": "job-board-admin",
-  "version": "0.1.0",
+{
+  "name": "job-board-admin",
+  "version": "0.2.0",
   "description": "Job Board Admin is the administration site of the MVD JS Meetup Group jobs section",
   "main": "Gulpfile.js",
   "scripts": {
-    "start": "gulp"
+    "start": "NODE_ENV=development gulp",
+    "build": "NODE_ENV=production gulp build",
+    "deploy": "NODE_ENV=production gulp deploy"
   },
   "author": "Gabriel Chertok <gchertok@gmail.com> (http://cherta.info)",
-  "contributors": [ 
-    "Gaston Festari <cilindrox@gmail.com> (http://blog.cilindrox.com)" 
+  "contributors": [
+    "Gaston Festari <cilindrox@gmail.com> (http://blog.cilindrox.com)"
   ],
   "dependencies": {
     "angular-bsfy": "*",
-    "angular-sanitize": "*",
     "marked": "*"
   },
-  "repository" : { 
+  "repository": {
     "type": "git",
     "url": "http://github.com/cherta/job-board-admin.git"
   },
@@ -26,6 +28,9 @@
     "gulp-csso": "^0.2.9",
     "gulp-jade": "^0.7.0",
     "gulp-livereload": "^2.1.1",
+    "gulp-replace": "^0.4.0",
+    "gulp-rimraf": "^0.1.0",
+    "gulp-sftp": "^0.1.2",
     "gulp-styl": "^1.0.0",
     "gulp-util": "^3.0.0",
     "tiny-lr": "^0.1.0"
