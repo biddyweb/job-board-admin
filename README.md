@@ -1,15 +1,31 @@
-# Job Board Admin
+# About jobs.js.uy
 
-This is a work in progress, my intention is one day to have a full
-MVD JS Meetup Group webpage and to have also a jobs section powered by this SPA.
+The jobs.js.uy webiste is a job listing app that shows all the js related jobs in Uruguay.
 
-I'm doing this work mainly to learn so you are free to use this code as you
-please without letting me know or anything.
+The application is a compound of three small apps:
 
-## What's inside
+* [job-board-public](http://github.com/js-uy/job-board-public) is the main website that you see when you go to [jobs.js.uy](http://jobs.js.uy).
+* [job-board-admin](http://github.com/js-uy/job-board-admin) is the administration site and is where companies and particulars log in to post open jobs positions.
+* [job-board-api](http://github.com/js-uy/job-board-api) is a node app that talks json and powers all the other two apps. It is the heart of the [jobs.js.uy](http://jobs.js.uy) website.
 
-Inside this project you will find a Gulpfile file to pre process styles, turn on
-a dev server and to browserify the js sources.
+## About job board admin
 
-The app itself is a single Knockout ViewModel with some helpers I developed to
-easily support routing.
+The admin interface for [jobs.js.uy](http://jobs.js.uy).
+
+## Getting started
+
+If you want to try this app first you will need to have a working copy of [job-board-api](http://github.com/js-uy/job-board-api) once you have that configured and installed you can run this app doing the following:
+
+```bash
+npm install -g gulp
+npm install
+mv sample.config.js config.js
+npm run-script start
+```
+
+If you want to build / deploy the app run `npm run-script build / deploy`.
+
+## Contributors:
+
+* Gabriel Chertok
+* Gaston Festari
