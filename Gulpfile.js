@@ -1,7 +1,5 @@
 var gulp      = require('gulp'),
   gutil       = require('gulp-util'),
-  /*styl        = require('gulp-styl'),
-  csso        = require('gulp-csso'),*/
   jade        = require('gulp-jade'),
   browserify  = require('gulp-browserify'),
   livereload  = require('gulp-livereload'), // Livereload plugin needed: https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei
@@ -26,13 +24,13 @@ gulp.task('clean', function () {
 /*
 * Copies the contents on dist folder to the specified server
 */
-gulp.task('sftp-copy', function () {
+gulp.task('deploy', ['clean', 'browserify', 'templates', 'angular-views'], function () {
   return gulp.src('dist/**/*').
     pipe(sftp({
           host: config.deploy.host,
           user: config.deploy.user,
-          pass: config.deploy.pass
-          port: config.deploy.port
+          pass: config.deploy.pass,
+          port: config.deploy.port,
           remotePath: config.deploy.remotePath
         }));
 });
@@ -40,7 +38,7 @@ gulp.task('sftp-copy', function () {
 /*
 * Browserify's app.js file
 */
-gulp.task('browserify', function () {
+gulp.task('browserify', ['clean'], function () {
   return gulp.src('src/app.js').
     pipe(replace(/\{serviceUrl\}/g, config.serviceUrl)).
     pipe(browserify({ debug : true })).
@@ -51,7 +49,7 @@ gulp.task('browserify', function () {
 /*
 * Parses the index.jade and generates dist/index.html
 */
-gulp.task('templates', function () {
+gulp.task('templates', ['clean'], function () {
   return gulp.src('src/index.jade').
     pipe(jade({ pretty: true })).
     pipe(gulp.dest('dist/')).
@@ -61,7 +59,7 @@ gulp.task('templates', function () {
 /*
 * Copies src/views to dist/views
 */
-gulp.task('angular-views', function () {
+gulp.task('angular-views', ['clean'], function () {
   return gulp.src('src/views/**/*.html').
     pipe(gulp.dest('dist/views/') ).
     pipe(livereload(server));
@@ -71,7 +69,7 @@ gulp.task('angular-views', function () {
 * Dev server
 */
 gulp.task('express', function () {
-  app.use(express.static(path.resolve('./dist')));
+  app.use(express.static(path.resolve('dist')));
   app.listen(1337);
   gutil.log('Listening on port: 1337');
 });
@@ -90,6 +88,5 @@ gulp.task('watch', function () {
   });
 });
 
-gulp.task('deploy', ['build', 'sftp-copy']);
 gulp.task('build', ['clean', 'browserify', 'templates', 'angular-views']);
 gulp.task('default', ['browserify', 'templates', 'angular-views', 'express', 'watch']);
