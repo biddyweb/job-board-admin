@@ -8,7 +8,7 @@ module.exports = function ($scope, $location, AuthService) {
       .then(function (user) {
         $location
           .path('/jobs')
-          .search({message: 'Welcome ' + user.name})
+          .search({notice: 'Welcome ' + user.name})
           .replace();
       })
       .catch(function (error) {

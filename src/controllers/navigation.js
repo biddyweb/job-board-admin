@@ -6,7 +6,7 @@ module.exports = function ($scope, $location, AuthService) {
       .then(function (message) {
         $location
           .path('/login')
-          .search({message: 'Good bye!'})
+          .search({notice: 'Good bye!'})
           .replace();
       });
   };
